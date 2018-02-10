@@ -316,4 +316,6 @@ Wire Wire Line
 	5725 4075 6050 4075
 Text Label 6050 4075 2    60   ~ 0
 POT
+Text Label 5825 4475 0    60   ~ 0
+~CS
 $EndSCHEMATC
