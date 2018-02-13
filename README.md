@@ -25,10 +25,10 @@ The goal is to have a board you can simply plug in, and it _just works_.™
 
 For the sake of ease, and getting up-and-running quickly, I opted to use an Arduino Pro Micro (5V), which I happened to have on hand.
 
-The input PWM is buffered through a 6n136 opto isolator, and fed directly into the Arudino.
+The input PWM is buffered through a 6N136 opto isolator, and fed directly into the Arudino.
 
 For output, there is an MCP41010 digital potentiometer, controlled via SPI. Since the front panel pot is 5K, we're only going to use ½ of it's 10K range.
 
 The connectors on the board are compatible with the connectors on the JP-1482; they're the JST XH series.
 
-The software is standard Arduino code, though I'm using PlatformIO cli since I'm not a big fan the Arduino IDE.  Why not bare metal AVR? This isn't a demanding application, and while the Arduino ecosystem isn't the most efficient, it does make it quick and easy to get things up-and-running.
+The software is standard Arduino code, though I'm using PlatformIO CLI since I'm not a big fan the Arduino IDE.  Why not bare metal AVR? This isn't a demanding application, and while the Arduino ecosystem isn't the most efficient, it does make it quick and easy to get things up-and-running.
