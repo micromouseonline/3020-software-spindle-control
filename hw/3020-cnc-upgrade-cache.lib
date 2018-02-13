@@ -6,8 +6,8 @@ EESchema-LIBRARY Version 2.3
 DEF +5V #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
 F1 "+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 DRAW
 P 2 0 1 0 -30 50 0 100 N
 P 2 0 1 0 0 0 0 100 N
@@ -16,14 +16,13 @@ X +5V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# 6N135
+# 6N136-RESCUE-3020-cnc-upgrade
 #
-DEF 6N135 U 0 40 Y Y 1 F N
+DEF 6N136-RESCUE-3020-cnc-upgrade U 0 40 Y Y 1 F N
 F0 "U" -200 300 50 H V L CNN
-F1 "6N135" 0 300 50 H V L CNN
+F1 "6N136-RESCUE-3020-cnc-upgrade" 0 300 50 H V L CNN
 F2 "Housings_DIP:DIP-8_W7.62mm" -200 -300 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
-ALIAS 6N136
 $FPLIST
  DIP*W7.62mm*
 $ENDFPLIST
@@ -59,16 +58,16 @@ ENDDEF
 #
 # CONN_01X02
 #
-DEF CONN_01X02 J 0 40 Y N 1 F N
-F0 "J" 0 150 50 H V C CNN
+DEF CONN_01X02 P 0 40 Y N 1 F N
+F0 "P" 0 150 50 H V C CNN
 F1 "CONN_01X02" 100 0 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 $FPLIST
- Pin_Header_Straight_1X*
- Pin_Header_Angled_1X*
- Socket_Strip_Straight_1X*
- Socket_Strip_Angled_1X*
+ Pin_Header_Straight_1X02
+ Pin_Header_Angled_1X02
+ Socket_Strip_Straight_1X02
+ Socket_Strip_Angled_1X02
 $ENDFPLIST
 DRAW
 S -50 -45 10 -55 0 1 0 N
@@ -81,16 +80,16 @@ ENDDEF
 #
 # CONN_01X03
 #
-DEF CONN_01X03 J 0 40 Y N 1 F N
-F0 "J" 0 200 50 H V C CNN
+DEF CONN_01X03 P 0 40 Y N 1 F N
+F0 "P" 0 200 50 H V C CNN
 F1 "CONN_01X03" 100 0 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 $FPLIST
- Pin_Header_Straight_1X*
- Pin_Header_Angled_1X*
- Socket_Strip_Straight_1X*
- Socket_Strip_Angled_1X*
+ Pin_Header_Straight_1X03
+ Pin_Header_Angled_1X03
+ Socket_Strip_Straight_1X03
+ Socket_Strip_Angled_1X03
 $ENDFPLIST
 DRAW
 S -50 -95 10 -105 0 1 0 N
@@ -105,16 +104,16 @@ ENDDEF
 #
 # CONN_01X08
 #
-DEF CONN_01X08 J 0 40 Y N 1 F N
-F0 "J" 0 450 50 H V C CNN
+DEF CONN_01X08 P 0 40 Y N 1 F N
+F0 "P" 0 450 50 H V C CNN
 F1 "CONN_01X08" 100 0 50 V V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 $FPLIST
- Pin_Header_Straight_1X*
- Pin_Header_Angled_1X*
- Socket_Strip_Straight_1X*
- Socket_Strip_Angled_1X*
+ Pin_Header_Straight_1X08
+ Pin_Header_Angled_1X08
+ Socket_Strip_Straight_1X08
+ Socket_Strip_Angled_1X08
 $ENDFPLIST
 DRAW
 S -50 -400 50 400 0 1 0 N
@@ -165,8 +164,8 @@ ENDDEF
 DEF GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
 F1 "GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
@@ -178,12 +177,13 @@ ENDDEF
 DEF MCP41010 U 0 40 Y Y 1 F N
 F0 "U" -250 350 50 H V L CNN
 F1 "MCP41010" 50 350 50 H V L CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" 0 0 50 H V C CNN
+F3 "" 0 0 50 H V C CNN
 ALIAS MCP41050 MCP41100
 $FPLIST
- DIP*W7.62mm*
- SOIC*Pitch1.27mm*
+ DIP-8__300
+ DIP-8__300_ELL
+ SOIC-8-N
 $ENDFPLIST
 DRAW
 S -250 300 250 -300 0 1 10 f
@@ -203,11 +203,11 @@ ENDDEF
 DEF R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
 F1 "R" 0 0 50 V V C CNN
-F2 "" -70 0 50 V I C CNN
-F3 "" 0 0 50 H I C CNN
+F2 "" -70 0 50 V V C CNN
+F3 "" 0 0 50 H V C CNN
 $FPLIST
  R_*
- R_*
+ Resistor_*
 $ENDFPLIST
 DRAW
 S -40 -100 40 100 0 1 10 N

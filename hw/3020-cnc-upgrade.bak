@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:3020-cnc-upgrade-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -126,7 +127,7 @@ GND
 Text Label 6050 3675 2    60   ~ 0
 +5V
 $Comp
-L 6N136 U1
+L 6N136-RESCUE-3020-cnc-upgrade U1
 U 1 1 5A728958
 P 2875 3675
 F 0 "U1" H 2675 3975 50  0000 L CNN
@@ -255,7 +256,7 @@ F 1 "CONN_01X08" V 4700 1725 50  0000 C CNN
 F 2 "Connectors_JST:JST_XH_B08B-XH-A_08x2.50mm_Straight" H 4600 1725 50  0001 C CNN
 F 3 "" H 4600 1725 50  0000 C CNN
 	1    4600 1725
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	4400 1375 3825 1375
@@ -316,4 +317,6 @@ Wire Wire Line
 	5725 4075 6050 4075
 Text Label 6050 4075 2    60   ~ 0
 POT
+Text Label 5825 4475 0    60   ~ 0
+~CS
 $EndSCHEMATC
