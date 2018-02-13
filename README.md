@@ -2,7 +2,7 @@
 # 3020 SOFTWARE SPINDLE CONTROL
 
 
-Thanks to [Johnny](https://hackaday.io/Johnny) from [hackaday.io](hackaday.io) for his [fantastic work](https://hackaday.io/project/6776-3040-cnc-milling-machine-mods/log/21618-jp-1482-spindle-controller-schematic) reverse-engeineering the JP-1482 spindle board, seen below:
+Thanks to [Johnny](https://hackaday.io/Johnny) from [hackaday.io](http://hackaday.io) for his [fantastic work](https://hackaday.io/project/6776-3040-cnc-milling-machine-mods/log/21618-jp-1482-spindle-controller-schematic) reverse-engeineering the JP-1482 spindle board, seen below:
 
 ![JP-1482 Schematic](img/JP-1482_spindle_schematic.png)
 
