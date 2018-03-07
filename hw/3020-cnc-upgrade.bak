@@ -65,7 +65,7 @@ F 1 "CONN_01X03" V 8400 4275 50  0000 C CNN
 F 2 "Connectors_JST:JST_XH_B03B-XH-A_03x2.50mm_Straight" H 8300 4275 50  0001 C CNN
 F 3 "" H 8300 4275 50  0000 C CNN
 	1    8300 4275
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L MCP41010 U3
@@ -256,7 +256,7 @@ F 1 "CONN_01X08" V 4700 1725 50  0000 C CNN
 F 2 "Connectors_JST:JST_XH_B08B-XH-A_08x2.50mm_Straight" H 4600 1725 50  0001 C CNN
 F 3 "" H 4600 1725 50  0000 C CNN
 	1    4600 1725
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	4400 1375 3825 1375
@@ -299,7 +299,7 @@ F 1 "CONN_01X03" V 7625 2950 50  0000 C CNN
 F 2 "Connectors_JST:JST_XH_B03B-XH-A_03x2.50mm_Straight" H 7525 2950 50  0001 C CNN
 F 3 "" H 7525 2950 50  0000 C CNN
 	1    7525 2950
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	7325 3050 6900 3050
