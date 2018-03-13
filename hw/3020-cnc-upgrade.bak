@@ -202,7 +202,7 @@ F 1 "CONN_01X02" V 1425 3625 50  0000 C CNN
 F 2 "Connectors_JST:JST_XH_B02B-XH-A_02x2.50mm_Straight" H 1325 3625 50  0001 C CNN
 F 3 "" H 1325 3625 50  0000 C CNN
 	1    1325 3625
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L D_ALT D1
