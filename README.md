@@ -35,3 +35,22 @@ The connectors on the board are compatible with the connectors on the JP-1482; t
 1. It seems there's a large batch of "XH" board-to-board _cables_ out there that are not only the wrong pitch (see #1), and more importantly, **are wired backwards**.  Pin 1 from one end of the cable is wired to pin 8 of the other, etc.  This will release the magic smoke.
 
 The software is standard Arduino code, though I'm using PlatformIO CLI since I'm not a big fan the Arduino IDE.  Why not bare metal AVR? This isn't a demanding application, and while the Arduino ecosystem isn't the most efficient, it does make it quick and easy to get things up-and-running.
+
+### Construction
+
+##### BOM
+
+| Ref   | P/N       |
+|-------|-----------|
+| P1    | B2B-XH-A(LF)(SN)|
+| P2, P4| B3B-XH-A(LF)(SN) |
+| P3    | B8B-XH-A(LF)(SN) |
+| R1    | Any 0802 330 ohm SMT resistor|
+| D1    | 1N4148 (optional)|
+| U1    | 6N136, 8 DIP |
+| U2    | Arduino Pro Micro (Ebay clone) |
+| U3    | MCP41010, 8 DIP |
+
+Buy genuine XH connectors and cables from a reputable supplier (e.g. Digi-key).  Avoid Ebay and Amazon.
+
+The board layout is rather tight.  It's designed to have U1 and U3 soldered directly to the board, while U2 is in a socket, for ease of swapping.
