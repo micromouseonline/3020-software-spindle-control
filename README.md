@@ -2,7 +2,7 @@
 # 3020 SOFTWARE SPINDLE CONTROL
 
 
-Thanks to [Johnny](https://hackaday.io/Johnny) from [hackaday.io](http://hackaday.io) for his [fantastic work](https://hackaday.io/project/6776-3040-cnc-milling-machine-mods/log/21618-jp-1482-spindle-controller-schematic) reverse-engeineering the JP-1482 spindle board, seen below:
+Thanks to [Johnny](https://hackaday.io/Johnny) from [hackaday.io](http://hackaday.io) for his [fantastic work](https://hackaday.io/project/6776-3040-cnc-milling-machine-mods/log/21618-jp-1482-spindle-controller-schematic) reverse-engineering the JP-1481 spindle board, seen below:
 
 ![JP-1482 Schematic](img/JP-1482_spindle_schematic.png)
 
@@ -29,6 +29,9 @@ The input PWM is buffered through a 6N136 opto isolator, and fed directly into t
 
 For output, there is an MCP41010 digital potentiometer, controlled via SPI. Since the front panel pot is 5K, we're only going to use ½ of it's 10K range.
 
-The connectors on the board are compatible with the connectors on the JP-1482; they're the JST XH series.
+The connectors on the board are compatible with the connectors on the JP-1482; they're the JST XH series. Be careful buying random "XH" connectors from Ebay or even Amazon, for two reasons:
+
+1. The connectors are often 2.54mm pitch, instead of 2.50mm (XH is 2.50mm).  This will mostly work, but for the 8-pin connector, you're going to bend the pins of your board connector by doing this.
+1. It seems there's a large batch of "XH" board-to-board _cables_ out there that are not only the wrong pitch (see #1), and more importantly, **are wired backwards**.  Pin 1 from one end of the cable is wired to pin 8 of the other, etc.  This will release the magic smoke.
 
 The software is standard Arduino code, though I'm using PlatformIO CLI since I'm not a big fan the Arduino IDE.  Why not bare metal AVR? This isn't a demanding application, and while the Arduino ecosystem isn't the most efficient, it does make it quick and easy to get things up-and-running.
