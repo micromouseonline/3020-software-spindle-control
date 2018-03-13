@@ -36,9 +36,9 @@ EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
+Title "3020 Spindle speed fix"
+Date "2018-03-13"
+Rev "1"
 Comp ""
 Comment1 ""
 Comment2 ""
