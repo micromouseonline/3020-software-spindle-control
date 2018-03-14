@@ -46,6 +46,7 @@ The software is standard Arduino code, though I'm using PlatformIO CLI since I'm
 | P2, P4| B3B-XH-A(LF)(SN) |
 | P3    | B8B-XH-A(LF)(SN) |
 | R1    | Any 0802 330 ohm SMT resistor|
+| R2    | Any 0802 2200 ohm SMT resistor |
 | D1    | 1N4148 (optional)|
 | U1    | 6N136, 8 DIP |
 | U2    | Arduino Pro Micro (Ebay clone) |
