@@ -47,7 +47,7 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(PWM_IN_PIN), interrupt, CHANGE);
     Serial.begin(115200);
-    
+
     for (int i = 0; i < AVG_LEN; ++i) {
         pwmPcts[i] = 0;
     }
@@ -58,7 +58,7 @@ void setup() {
 }
 
 void setOutput(float pct) {
-	
+
 
     // We're emulating a 5K pot with a
     // 10K digi-pot, so we're
@@ -67,7 +67,7 @@ void setOutput(float pct) {
     uint8_t value = 0x80 + pct * 0x7f;
 
         Serial.print("value: ");
-        Serial.print(value); 
+        Serial.print(value);
         Serial.println();
 
     SPI.beginTransaction(spiSet);
@@ -116,7 +116,7 @@ void loop() {
         pwmPct /= AVG_LEN;
 	potPct = analogRead(POT_IN_PIN) / 1023.0f;
 
-        float delta = outputPct - min(pwmPct, potPct);
+        float delta = outputPct - pwmPct * potPct;
         float aDelta = fabs(delta);
         if (delta) {
             // No more than 2% per 50ms
@@ -133,12 +133,12 @@ void loop() {
 
     if (printTimer > 75) {
         Serial.print("PWM in: ");
-        Serial.print(pwmPct*100); 
+        Serial.print(pwmPct*100);
         Serial.print("%");
         Serial.print(" POT in: ");
-        Serial.print(potPct*100); 
+        Serial.print(potPct*100);
         Serial.print("  out: ");
-        Serial.print(outputPct * 100); 
+        Serial.print(outputPct * 100);
         Serial.println();
         printTimer = 0;
     }
