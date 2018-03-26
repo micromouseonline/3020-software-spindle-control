@@ -7,6 +7,10 @@
 #define CS_PIN 10
 #define SCK_PIN 15
 #define MOSI_PIN 16
+#define AVG_LEN 15
+
+
+//#define DEBUG
 
 SPISettings spiSet(5000000, MSBFIRST, SPI_MODE0);
 
@@ -16,7 +20,7 @@ volatile long lastTime = 0;
 elapsedMillis outputTimer;
 elapsedMillis printTimer;
 
-#define AVG_LEN 15
+
 
 float pwmPcts[AVG_LEN];
 float outputPct;
@@ -65,11 +69,6 @@ void setOutput(float pct) {
     // only going to use 1/2 the rang
 
     uint8_t value = 0x80 + pct * 0x7f;
-
-        Serial.print("value: ");
-        Serial.print(value);
-        Serial.println();
-
     SPI.beginTransaction(spiSet);
     digitalWrite(CS_PIN, LOW);
     SPI.transfer(0x11); // Write potentiometer 0
@@ -131,6 +130,7 @@ void loop() {
 	setOutput(outputPct);
     }
 
+#ifdef DEBUG
     if (printTimer > 75) {
         Serial.print("PWM in: ");
         Serial.print(pwmPct*100);
@@ -142,4 +142,5 @@ void loop() {
         Serial.println();
         printTimer = 0;
     }
+#endif
 }
