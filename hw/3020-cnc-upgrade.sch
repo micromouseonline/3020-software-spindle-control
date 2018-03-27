@@ -353,4 +353,6 @@ Wire Wire Line
 	4825 3875 4275 3875
 Text Label 4275 3875 0    60   ~ 0
 pol
+Text Notes 2025 2200 0    60   ~ 0
+PWM polarity\nopen = postitive PWM\n
 $EndSCHEMATC
