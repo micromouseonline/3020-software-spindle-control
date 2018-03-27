@@ -319,4 +319,38 @@ Text Label 6050 4075 2    60   ~ 0
 POT
 Text Label 5825 4475 0    60   ~ 0
 ~CS
+$Comp
+L CONN_01X02 J1
+U 1 1 5ABA669E
+P 2250 2400
+F 0 "J1" H 2250 2550 50  0000 C CNN
+F 1 "CONN_01X02" V 2350 2400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 2250 2400 50  0001 C CNN
+F 3 "" H 2250 2400 50  0001 C CNN
+	1    2250 2400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 5ABA677C
+P 2200 2700
+F 0 "#PWR05" H 2200 2450 50  0001 C CNN
+F 1 "GND" H 2200 2550 50  0000 C CNN
+F 2 "" H 2200 2700 50  0000 C CNN
+F 3 "" H 2200 2700 50  0000 C CNN
+	1    2200 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 2700 2200 2600
+Wire Wire Line
+	2300 2600 2300 2700
+Wire Wire Line
+	2300 2700 3025 2700
+Text Label 3025 2700 2    60   ~ 0
+pol
+Wire Wire Line
+	4825 3875 4275 3875
+Text Label 4275 3875 0    60   ~ 0
+pol
 $EndSCHEMATC
