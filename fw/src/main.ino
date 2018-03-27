@@ -3,12 +3,16 @@
 #include <SPI.h>
 
 #define PWM_IN_PIN 2
+#define POL_PIN 3
 #define POT_IN_PIN 0
 #define CS_PIN 10
 #define SCK_PIN 15
 #define MOSI_PIN 16
 #define AVG_LEN 15
+#define LED_PIN 17
 
+#define MAX(x,y) (x) > (y) ? (x) : (y)
+#define MIN(x,y) (x) < (y) ? (x) : (y)
 
 //#define DEBUG
 
@@ -19,8 +23,10 @@ volatile int offTime = 0;
 volatile long lastTime = 0;
 elapsedMillis outputTimer;
 elapsedMillis printTimer;
+elapsedMillis ledTimer;
+uint16_t ledState = 200;
 
-
+volatile bool invertPolarity;
 
 float pwmPcts[AVG_LEN];
 float outputPct;
@@ -30,9 +36,10 @@ float potPct;
 void interrupt () {
     long now = micros();
     long elapsed = lastTime - now;
-    bool state = digitalRead(PWM_IN_PIN);
+    bool state = digitalRead(PWM_IN_PIN) ^ invertPolarity; 
 
-    if (state) {
+    // this is backwards because the opto inverts
+    if (state) { 
         offTime = elapsed;
     } else {
         onTime = elapsed;
@@ -44,7 +51,11 @@ void interrupt () {
 void setup() {
 
     pinMode(PWM_IN_PIN, INPUT_PULLUP);
+    pinMode(POT_IN_PIN, INPUT);
     pinMode(CS_PIN, OUTPUT);
+    pinMode(POL_PIN, INPUT_PULLUP);
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, HIGH);
 
     SPI.begin();
     setOutput(0);
@@ -66,7 +77,7 @@ void setOutput(float pct) {
 
     // We're emulating a 5K pot with a
     // 10K digi-pot, so we're
-    // only going to use 1/2 the rang
+    // only going to use 1/2 the range
 
     uint8_t value = 0x80 + pct * 0x7f;
     SPI.beginTransaction(spiSet);
@@ -77,57 +88,73 @@ void setOutput(float pct) {
     SPI.endTransaction();
 }
 
+void setLedPct(float pct) {
+    if (pct <=0) {
+        ledState = 0;
+    } else if (pct >= 1) {
+        ledState = 1;
+    } else {
+        ledState = (1.0 - pct) * 1000;
+    }
+}
+
 void loop() {
 
     static int pctIndex = 0;
-    long curOnTime, curOffTime;
-    bool flag = false;
+    invertPolarity = digitalRead(POL_PIN);
+
     float cur = digitalRead(PWM_IN_PIN);
+    cur = invertPolarity ? 1.0 - cur : cur;
 
     noInterrupts();
-    long now = micros();
-    long elapsed = now - lastTime;
-    if (elapsed < 100000) { // 100ms
-        curOnTime = onTime;
-        curOffTime = offTime;
-        flag = true;
-    } else {
-        onTime = offTime = 0;
-    }
+    // copy values out fast.
+    long l = lastTime;
+    int o = onTime;
+    int f = offTime;
     interrupts();
 
-    if (flag && curOnTime && curOffTime) {
-        cur = (float)curOnTime / (curOffTime + curOnTime);
+    // BEGIN
+    //
+    // If we put this code in the 
+    // "nointerrupts" block above, 
+    // then narrow PWM times become
+    // unstable
+    long now = micros();
+    long elapsed = now - l;
+    if (elapsed < 100000) { // 100ms
+        cur = (float)o / (float)(o + f);
+    } 
+    // END
+
+
+    if (ledState < 2) {
+        digitalWrite(LED_PIN, !ledState);
+        ledTimer = 0;
+    } else if (ledTimer > ledState) {
+        digitalWrite(LED_PIN, !digitalRead(LED_PIN));
+        ledTimer = 0;
     }
+
     pwmPcts[pctIndex++] = cur;
 
     if (pctIndex >= AVG_LEN) {
         pctIndex = 0;
     }
 
-
-    if (outputTimer > 50) {
+    if (outputTimer > 10) {
         pwmPct = 0;
 
         for (int i = 0; i < AVG_LEN; ++i) {
             pwmPct += pwmPcts[i];
         }
-        pwmPct /= AVG_LEN;
-	potPct = analogRead(POT_IN_PIN) / 1023.0f;
 
-        float delta = outputPct - pwmPct * potPct;
-        float aDelta = fabs(delta);
-        if (delta) {
-            // No more than 2% per 50ms
-            if (delta < 0) {
-                outputPct += min(aDelta, .02);
-            } else {
-            // Slow down fast
-                outputPct -= delta;
-            }
-        }
+        pwmPct /= AVG_LEN;
+        potPct = analogRead(POT_IN_PIN) / 1023.0f;
+        outputPct = pwmPct * potPct;
+
+        setLedPct(outputPct);
+        setOutput(outputPct);
         outputTimer = 0;
-	setOutput(outputPct);
     }
 
 #ifdef DEBUG
